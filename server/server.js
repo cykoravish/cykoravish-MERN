@@ -11,7 +11,7 @@ const errorMiddleware = require("./middlewares/error-middleware");
 app.use(
   cors({
     origin: "http://localhost:5173",
-    method: "GET, POST,PUT, DELETE, PATCH, HEAD",
+    method: "GET, POST, PUT, DELETE, PATCH, HEAD",
     credentials: true,
   })
 );
