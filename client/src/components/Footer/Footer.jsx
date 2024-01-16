@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer>
-      <p>@thapatechnical 2024</p>
+      <p>@cykoravish 2024</p>
     </footer>
   );
 };
