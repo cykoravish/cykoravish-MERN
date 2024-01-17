@@ -1,13 +1,17 @@
 import { NavLink } from "react-router-dom";
 import Analytics from "../components/Analytics";
+import { useAuth } from "../store/auth";
 
 const About = () => {
+  const { user } = useAuth();
+  console.log("user", user);
   return (
     <>
       <main>
         <section className="section-hero">
           <div className="container grid grid-two-cols">
             <div className="hero-content">
+              <p>hii {user.username}</p>
               {/* <p>We care to cure your Health</p> */}
 
               <h1>Why Choose Us? </h1>
