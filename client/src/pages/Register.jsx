@@ -14,7 +14,7 @@ const Register = () => {
   // console.log(user);
   const navigate = useNavigate();
 
-  const storeTokenInLS = useAuth();
+  const {storeTokenInLS} = useAuth();
 
   //handling input user
   const handleInput = (e) => {

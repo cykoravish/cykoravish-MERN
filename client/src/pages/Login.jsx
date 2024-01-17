@@ -11,7 +11,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const  storeTokenInLS  = useAuth();
+  const  {storeTokenInLS}  = useAuth();
 
   // let handle the input field value
   const handleInput = (e) => {
