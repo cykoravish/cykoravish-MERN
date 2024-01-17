@@ -3,9 +3,10 @@ import { createContext, useContext, useState } from "react";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState("");
 
   const storeTokenInLS = (serverToken) => {
+    setToken(serverToken);
     return localStorage.setItem("token", serverToken);
   };
 
