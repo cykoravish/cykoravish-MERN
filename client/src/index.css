@@ -60,6 +60,13 @@ li {
 
 /*? layout Rule  */
 
+/* react toastify css */
+.toastBody {
+  font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+  font-size: 1.7rem;
+}
+
+
 .container {
   max-width: 140rem;
   padding: 4rem 2.4rem;
@@ -253,10 +260,12 @@ a.active {
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover,
   a.active {
     color: #747bff;
   }
+
   button {
     background-color: #f9f9f9;
   }
@@ -268,24 +277,24 @@ a.active {
   align-items: center;
   justify-content: center;
 }
+
 #error-page .content {
   max-width: 70rem;
   text-align: center;
 }
+
 .content h2.header {
   font-size: 18vw;
   line-height: 1em;
   animation: animate 10s ease-in-out infinite;
-  background: -webkit-repeating-linear-gradient(
-    -60deg,
-    #71b7e6,
-    var(--btn-color),
-    #b98acc,
-    #ee8176,
-    #b98acc,
-    var(--btn-color),
-    #9b59b6
-  );
+  background: -webkit-repeating-linear-gradient(-60deg,
+      #71b7e6,
+      var(--btn-color),
+      #b98acc,
+      #ee8176,
+      #b98acc,
+      var(--btn-color),
+      #9b59b6);
   background-size: 500%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -298,19 +307,24 @@ a.active {
   0% {
     background-position: 0 0;
   }
+
   25% {
     background-position: 100% 0;
   }
+
   50% {
     background-position: 100% 100%;
   }
+
   75% {
     background-position: 0% 100%;
   }
+
   100% {
     background-position: 0% 0%;
   }
 }
+
 .content h4 {
   margin-bottom: 20px;
   text-transform: uppercase;
@@ -322,6 +336,7 @@ a.active {
   display: inline-flex;
   justify-content: center;
 }
+
 .content .btns a {
   display: inline-block;
   margin: 0 10px;
@@ -334,6 +349,7 @@ a.active {
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
+
 .content .btns a:hover {
   background: var(--btn-color);
   color: #fff;
@@ -363,6 +379,7 @@ a.active {
       margin: 2.4rem 0 0.8rem 0;
       text-transform: capitalize;
     }
+
     & input {
       width: 80%;
       padding: 0.6rem 0.6rem;
@@ -404,6 +421,7 @@ a.active {
   & .container:first-child {
     padding: 0;
   }
+
   & .grid-three-cols {
     grid-template-columns: repeat(3, 1fr);
     gap: 3.2rem;
@@ -417,6 +435,7 @@ a.active {
 
     & .card-img {
       text-align: center;
+
       & img {
         width: 70%;
         height: auto;
@@ -444,7 +463,7 @@ a.active {
 ** media query section css
 ** -------------------------  */
 
-@media (width <= 998px) {
+@media (width <=998px) {
   .grid-two-cols {
     grid-template-columns: 1fr;
   }
@@ -465,7 +484,7 @@ a.active {
   }
 }
 
-@media (width <= 798px) {
+@media (width <=798px) {
   html {
     font-size: 56.25%;
   }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import toast from "react-hot-toast";
 
 const URL = "http://localhost:5000/api/auth/login";
 
@@ -11,7 +12,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
-  const  {storeTokenInLS}  = useAuth();
+  const { storeTokenInLS } = useAuth();
 
   // let handle the input field value
   const handleInput = (e) => {
@@ -37,16 +38,21 @@ const Login = () => {
       });
       console.log("response is", response);
 
+      const res_data = await response.json();
+
       if (response.ok) {
-        const res_data = await response.json();
+        toast.success("login successfull");
         storeTokenInLS(res_data.token);
-        console.log("successfull login");
-        alert("login successfull");
+
+        // console.log("successfull login");
 
         setUser({ email: "", password: "" });
         navigate("/");
       } else {
-        console.log("invalid credentials");
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails[0] : res_data.message
+        );
+        console.log("invalid credentials : ", res_data.extraDetails);
       }
     } catch (error) {
       console.log(error);
@@ -79,6 +85,7 @@ const Login = () => {
                       value={user.email}
                       onChange={handleInput}
                       placeholder="email"
+                      required
                     />
                   </div>
 
@@ -90,6 +97,7 @@ const Login = () => {
                       value={user.password}
                       onChange={handleInput}
                       placeholder="password"
+                      required
                     />
                   </div>
                   <br />
