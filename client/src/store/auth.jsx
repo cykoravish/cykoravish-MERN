@@ -5,13 +5,15 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [services, setServices] = useState("");
+  // console.log("services iss: ", services);
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
     return localStorage.setItem("token", serverToken);
   };
 
   let isLoggedIn = !!token;
-  console.log("isLoggedIn", isLoggedIn);
+  // console.log("isLoggedIn", isLoggedIn);
   //   tackling kogout functionality
   const LogoutUser = () => {
     setToken("");
@@ -29,25 +31,43 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.ok) {
+        console.log("response is ok", response)
         const data = await response.json();
-
+       
         // our main goal is to get the user data 👇
         setUser(data.userData);
       } else {
         console.error("Error fetching user data");
       }
     } catch (error) {
-      console.log(error);
+      console.log("error in fetching service",error);
+    }
+  };
+
+  //fetching services from database
+  const getServiceData = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/data/service", {
+        method: "GET",
+      });
+      if (response.ok) {
+        const services = await response.json();
+        setServices(services.msg);
+        // console.log(services.msg);
+      }
+    } catch (error) {
+      console.log(`services frontend error: , ${error}`);
     }
   };
 
   useEffect(() => {
+    getServiceData();
     userAuthentication();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, storeTokenInLS, LogoutUser, user }}
+      value={{ isLoggedIn, storeTokenInLS, LogoutUser, user, services }}
     >
       {children}
     </AuthContext.Provider>
