@@ -14,7 +14,7 @@ const Register = () => {
   // console.log(user);
   const navigate = useNavigate();
 
-  const {storeTokenInLS} = useAuth();
+  const { storeTokenInLS } = useAuth();
 
   //handling input user
   const handleInput = (e) => {
@@ -39,15 +39,18 @@ const Register = () => {
         },
         body: JSON.stringify(user),
       });
+
+      const res_data = await response.json();
+
+      console.log(`response from data server is ${res_data.message}`);
+
       if (response.ok) {
-        const res_data = await response.json();
-        //storing token in local storage
         storeTokenInLS(res_data.token);
-        console.log(`response from data server is ${res_data}`);
         setUser({ username: "", email: "", phone: "", password: "" });
         navigate("/login");
+      } else {
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
-      console.log("response is: ", response);
     } catch (error) {
       console.log("register error is : ", error);
     }
@@ -80,6 +83,7 @@ const Register = () => {
                       value={user.username}
                       onChange={handleInput}
                       placeholder="username"
+                      required
                     />
                   </div>
                   <div>
@@ -90,6 +94,7 @@ const Register = () => {
                       value={user.email}
                       onChange={handleInput}
                       placeholder="email"
+                      required
                     />
                   </div>
                   <div>
@@ -99,6 +104,7 @@ const Register = () => {
                       name="phone"
                       value={user.phone}
                       onChange={handleInput}
+                      required
                     />
                   </div>
                   <div>
@@ -109,6 +115,7 @@ const Register = () => {
                       value={user.password}
                       onChange={handleInput}
                       placeholder="password"
+                      required
                     />
                   </div>
                   <br />
