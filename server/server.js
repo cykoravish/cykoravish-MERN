@@ -7,6 +7,7 @@ const contactRoute = require("./routes/contact-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const serviceRoute = require("./routes/service-router");
+const adminRoute = require("./routes/admin-router")
 
 // to get the json data in express app.
 app.use(
@@ -22,6 +23,8 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
 app.use("/api/data", serviceRoute);
+
+app.use("/api/admin", adminRoute)
 
 app.use(errorMiddleware);
 
