@@ -3,7 +3,7 @@ import { useAuth } from "../store/auth";
 
 export const Service = () => {
   const { services } = useAuth();
-  // console.log("services is ", services);
+  console.log("servi array ", services);
 
   return (
     <section className="section-service">
