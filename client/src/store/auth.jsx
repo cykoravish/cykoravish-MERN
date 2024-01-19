@@ -31,16 +31,16 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        console.log("response is ok", response)
+        console.log("response is ok", response);
         const data = await response.json();
-       
+
         // our main goal is to get the user data 👇
         setUser(data.userData);
       } else {
         console.error("Error fetching user data");
       }
     } catch (error) {
-      console.log("error in fetching service",error);
+      console.log("error in fetching service", error);
     }
   };
 
@@ -52,8 +52,8 @@ export const AuthProvider = ({ children }) => {
       });
       if (response.ok) {
         const services = await response.json();
+        console.log("serv is ..", services.msg);
         setServices(services.msg);
-        // console.log(services.msg);
       }
     } catch (error) {
       console.log(`services frontend error: , ${error}`);
