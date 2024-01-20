@@ -26,4 +26,25 @@ const getAllContacts = async (req, res) => {
     next(error);
   }
 };
-module.exports = { getAllUsers, getAllContacts };
+
+const getUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const data = await User.findOne({ _id: id }).select("-password");
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteUserById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await User.deleteOne({ _id: id });
+    res.status(200).json({ message: "user deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { getAllUsers, getAllContacts, deleteUserById, getUserById };
