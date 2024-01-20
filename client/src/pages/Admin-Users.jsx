@@ -19,6 +19,12 @@ export const AdminUsers = () => {
       console.log(error);
     }
   };
+
+  // delete user on delete button
+  const deleteUser = (id) => {
+    console.log(id);
+  };
+
   useEffect(() => {
     getAllUsersData();
   }, []);
@@ -48,7 +54,11 @@ export const AdminUsers = () => {
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
                     <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                      <button onClick={() => deleteUser(curUser._id)}>
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
