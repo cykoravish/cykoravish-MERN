@@ -2,30 +2,38 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [services, setServices] = useState([]);
   const authorizationToken = `Bearer ${token}`;
 
-  // console.log("services iss: ", services);
+  // const API = "http://localhost:5000";
+  // const API = "https://api.thapatechnical.site";
+  const API = import.meta.env.VITE_APP_URI_API;
+
   const storeTokenInLS = (serverToken) => {
     setToken(serverToken);
     return localStorage.setItem("token", serverToken);
   };
 
   let isLoggedIn = !!token;
-  // console.log("isLoggedIn", isLoggedIn);
-  //   tackling kogout functionality
+  console.log("isLoggedIN ", isLoggedIn);
+
+  // tackling the logout functionality
   const LogoutUser = () => {
     setToken("");
     return localStorage.removeItem("token");
   };
 
-  //jwt authentication - to get current logged in user data
+  // JWT AUTHENTICATION - to get the currently loggedIN user data
+
   const userAuthentication = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/auth/user", {
+      setIsLoading(true);
+      const response = await fetch(`${API}/api/auth/user`, {
         method: "GET",
         headers: {
           Authorization: authorizationToken,
@@ -33,39 +41,42 @@ export const AuthProvider = ({ children }) => {
       });
 
       if (response.ok) {
-        console.log("response is ok", response);
         const data = await response.json();
-
-        // our main goal is to get the user data 👇
+        console.log("user data ", data.userData);
         setUser(data.userData);
+        setIsLoading(false);
       } else {
         console.error("Error fetching user data");
+        setIsLoading(false);
       }
     } catch (error) {
-      console.log("error in fetching service", error);
+      console.error("Error fetching user data");
     }
   };
 
-  //fetching services from database
-  const getServiceData = async () => {
+  // to fetch the services data from the database
+  const getServices = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/data/service", {
+      const response = await fetch(`${API}/api/data/service`, {
         method: "GET",
       });
+
       if (response.ok) {
-        const services = await response.json();
-        console.log("serv is ..", services.msg);
-        setServices(services.msg);
+        const data = await response.json();
+        console.log(data.msg);
+        setServices(data.msg);
       }
     } catch (error) {
-      console.log(`services frontend error: , ${error}`);
+      console.log(`services frontend error: ${error}`);
     }
   };
 
   useEffect(() => {
-    getServiceData();
+    getServices();
     userAuthentication();
   }, []);
+
+  //please subs to thapa technical channel .. also world best js course is coming soon
 
   return (
     <AuthContext.Provider
@@ -76,6 +87,8 @@ export const AuthProvider = ({ children }) => {
         user,
         services,
         authorizationToken,
+        isLoading,
+        API,
       }}
     >
       {children}

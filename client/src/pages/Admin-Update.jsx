@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
@@ -11,26 +11,30 @@ export const AdminUpdate = () => {
   });
 
   const params = useParams();
-  const { authorizationToken } = useAuth();
+  console.log("params single user: ", params);
+  const { authorizationToken, API } = useAuth();
 
+  //   get single user data
   const getSingleUserData = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/admin/users/${params.id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: authorizationToken,
-          },
-        }
-      );
+      const response = await fetch(`${API}/api/admin/users/${params.id}`, {
+        method: "GET",
+        headers: {
+          Authorization: authorizationToken,
+        },
+      });
       const data = await response.json();
-      console.log(`user single data ${data}`);
+      console.log(`users single data:  ${data}`);
       setData(data);
+
+      //   if (response.ok) {
+      //     getAllUsersData();
+      //   }
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getSingleUserData();
   }, []);
@@ -44,11 +48,14 @@ export const AdminUpdate = () => {
       [name]: value,
     });
   };
+
+  // to udpate the data dynamically
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      e.preventDefault();
       const response = await fetch(
-        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        `${API}/api/admin/users/update/${params.id}`,
         {
           method: "PATCH",
           headers: {
@@ -58,31 +65,36 @@ export const AdminUpdate = () => {
           body: JSON.stringify(data),
         }
       );
+
       if (response.ok) {
-        toast.success("updated successfully");
+        toast.success("Updated successfully");
       } else {
-        toast.error("can't update");
+        toast.error("Not Updated ");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return (
     <section className="section-contact">
       <div className="contact-content container">
-        <h1 className="main-heading">update user data</h1>
+        <h1 className="main-heading">Update User Data</h1>
       </div>
-      {/* <h1>Contact Page</h1> */}
+      {/* contact page main  */}
       <div className="container grid grid-two-cols">
+        {/* contact form content actual  */}
         <section className="section-form">
           <form onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="username">Username</label>
+              <label htmlFor="username">username</label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                autoComplete="off"
                 value={data.username}
                 onChange={handleInput}
-                autoCapitalize="off"
                 required
               />
             </div>
@@ -96,12 +108,12 @@ export const AdminUpdate = () => {
                 autoComplete="off"
                 value={data.email}
                 onChange={handleInput}
-                autoCapitalize="off"
                 required
               />
             </div>
+
             <div>
-              <label htmlFor="email">phone</label>
+              <label htmlFor="phone">Mobile</label>
               <input
                 type="phone"
                 name="phone"
@@ -109,18 +121,16 @@ export const AdminUpdate = () => {
                 autoComplete="off"
                 value={data.phone}
                 onChange={handleInput}
-                autoCapitalize="off"
                 required
               />
             </div>
 
             <div>
-              <button type="submit"> update </button>
+              <button type="submit">Update</button>
             </div>
           </form>
         </section>
       </div>
-      <section className="mb-3"></section>
     </section>
   );
 };

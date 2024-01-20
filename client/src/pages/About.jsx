@@ -1,21 +1,20 @@
 import { NavLink } from "react-router-dom";
-import Analytics from "../components/Analytics";
+import { Analytics } from "../components/Analytics";
 import { useAuth } from "../store/auth";
 
-const About = () => {
+export const About = () => {
   const { user } = useAuth();
-  console.log("user", user);
   return (
     <>
       <main>
         <section className="section-hero">
           <div className="container grid grid-two-cols">
             <div className="hero-content">
+              {/* <p>We care to cure your Health</p> */}
               <p>
-                welcome 
-                {user ? ` ${user.username} to our website` : `to our website`}
+                Welcome,
+                {user ? ` ${user.username} to our website` : ` to our website`}
               </p>
-
               <h1>Why Choose Us? </h1>
               <p>
                 Expertise: Our team consists of experienced IT professionals who
@@ -36,7 +35,7 @@ const About = () => {
                 on the quality of our services.
               </p>
               <p>
-                Reliability: Count on us to be there when you need us. We're
+                Reliability: Count on us to be there when you need us. We are
                 committed to ensuring your IT environment is reliable and
                 available 24/7.
               </p>
@@ -63,4 +62,3 @@ const About = () => {
     </>
   );
 };
-export default About;

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-const Error = () => {
+export const Error = () => {
   return (
     <>
       <section id="error-page">
@@ -21,4 +21,3 @@ const Error = () => {
     </>
   );
 };
-export default Error;
