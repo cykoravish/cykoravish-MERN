@@ -14,6 +14,10 @@ router
   .get(authMiddleware, adminMiddleware, adminController.getUserById);
 
 router
+  .route("/users/update/:id")
+  .patch(authMiddleware, adminController.updateUserById);
+
+router
   .route("/users/delete/:id")
   .delete(authMiddleware, adminMiddleware, adminController.deleteUserById);
 router
