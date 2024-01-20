@@ -27,8 +27,6 @@ body {
   min-height: 100vh;
 }
 
-/*?  Help me reach 1 Million subs 👉 https://youtube.com/thapatechnical */
-
 h1 {
   font-size: 5.4rem;
   line-height: 1.1;
@@ -58,14 +56,14 @@ li {
   list-style: none;
 }
 
-/*? layout Rule  */
+/* react toastify css  */
 
-/* react toastify css */
 .toastBody {
   font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
   font-size: 1.7rem;
 }
 
+/*? layout Rule  */
 
 .container {
   max-width: 140rem;
@@ -112,6 +110,50 @@ button {
   background-color: transparent;
   box-shadow: inset 0 0 0 0.2rem var(--btn-color);
   margin-left: 3.2rem;
+}
+
+/*? state rules  */
+
+button:hover {
+  box-shadow: inset 0 0 0 0.2rem var(--bg-color);
+  /* border: 0.2rem solid #fff; */
+}
+
+a:hover,
+a.active {
+  color: #535bf2;
+}
+
+/* pseduo elements  */
+.main-heading {
+  position: relative;
+  text-transform: capitalize;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    height: 0.5rem;
+    background-color: var(--btn-color);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover,
+  a.active {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
 }
 
 /***** Hero Section *****/
@@ -223,51 +265,6 @@ button {
       width: 80%;
       padding: 0.4rem 0.6rem;
     }
-  }
-}
-
-/* ////////////////////////////////////////////////////////? */
-/*? state rules  */
-
-button:hover {
-  box-shadow: inset 0 0 0 0.2rem var(--bg-color);
-  /* border: 0.2rem solid #fff; */
-}
-
-a:hover,
-a.active {
-  color: #535bf2;
-}
-
-/* pseduo elements  */
-.main-heading {
-  position: relative;
-  text-transform: capitalize;
-
-  &::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 50%;
-    height: 0.5rem;
-    background-color: var(--btn-color);
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover,
-  a.active {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
   }
 }
 
@@ -459,6 +456,50 @@ a.active {
   }
 }
 
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
+  border: 0.2rem solid var(--btn-color);
+  min-height: 70rem;
+
+  & header {
+    border-right: 0.2rem solid var(--btn-color);
+
+    & ul {
+      flex-direction: column;
+      gap: 5rem;
+      text-transform: uppercase;
+      margin-top: 10rem;
+
+      & li a {
+        color: var(--bg-color);
+      }
+    }
+  }
+}
+
+/* admin  */
+.admin-users,
+.admin-user {
+  /* border: 0.2rem solid var(--btn-color); */
+}
+
+.admin-users {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+th {
+  font-size: 1.8rem;
+  letter-spacing: 0.1rem;
+  padding: 3rem;
+  color: var(--dark-color);
+  box-shadow: 0 0.3rem 0 grey;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
 td {
   font-size: 1.7rem;
   letter-spacing: 0.1rem;
@@ -466,6 +507,7 @@ td {
   text-align: center;
   color: var(--dark-color);
   width: 30rem;
+  /* border: 0.1rem solid red; */
 }
 
 table {
@@ -476,7 +518,7 @@ table {
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
-  -o-border-radius: 1rem
+  -o-border-radius: 1rem;
 }
 
 .admin-contacts-section {
@@ -488,7 +530,8 @@ table {
   grid-template-columns: repeat(4, minmax(10rem, 1fr));
   align-items: center;
   box-shadow: 0 0.3rem 0 grey;
-  margin-bottom: 4px solid transparent;
+  margin-bottom: 10px;
+  border-bottom: 4px solid transparent;
   color: var(--bg-color);
 
   &:last-child {
@@ -517,7 +560,7 @@ body tr {
   padding: 1rem 4rem;
   -webkit-border-radius: 3rem;
   -moz-border-radius: 3rem;
-  -mz-border-radius: 3rem;
+  -ms-border-radius: 3rem;
   -o-border-radius: 3rem;
 
   &:hover {
@@ -525,12 +568,13 @@ body tr {
     background: #1fa750;
     font-weight: bold;
   }
-
 }
 
 .admin-section-form {
   background-color: var(--bg-color);
+  /* max-width: 60rem; */
   max-width: 60rem;
+  /* width: 30rem; */
   padding: 0 10rem;
   color: var(--dark-color);
   margin-left: 10rem;
@@ -540,17 +584,16 @@ body tr {
     flex-direction: column;
     gap: 2rem;
     padding: 5rem;
-  }
 
-  & div {
-    display: grid;
+    & div {
+      display: grid;
 
-    &input {
-      background-color: var(--helper-color);
-      border: none;
-      padding: 1.4rem 0rem 1.4rem 2rem;
-
-      color: var(--dark-color);
+      & input {
+        background-color: var(--helper-color);
+        border: none;
+        padding: 1.4rem 0rem 1.4rem 2rem;
+        color: var(--dark-color);
+      }
 
       & input,
       button {
@@ -559,8 +602,6 @@ body tr {
     }
   }
 }
-
-
 
 /** -----------------------
 ** media query section css

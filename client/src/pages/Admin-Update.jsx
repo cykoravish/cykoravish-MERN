@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import toast from "react-hot-toast";
 
 export const AdminUpdate = () => {
   const [data, setData] = useState({
@@ -34,7 +35,36 @@ export const AdminUpdate = () => {
     getSingleUserData();
   }, []);
 
-  const handleInput = () => {};
+  const handleInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: authorizationToken,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.ok) {
+        toast.success("updated successfully");
+      } else {
+        toast.error("can't update");
+      }
+    } catch (error) {}
+  };
   return (
     <section className="section-contact">
       <div className="contact-content container">
@@ -43,7 +73,7 @@ export const AdminUpdate = () => {
       {/* <h1>Contact Page</h1> */}
       <div className="container grid grid-two-cols">
         <section className="section-form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username">Username</label>
               <input
