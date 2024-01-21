@@ -1,32 +1,33 @@
-const express = require("express");
-const adminController = require("../controllers/admin-controller");
-const authMiddleware = require("../middlewares/auth-middleware");
-const adminMiddleware = require("../middlewares/admin-middleware");
+import express from "express";
+import {
+  deleteContactById,
+  deleteUserById,
+  getAllContacts,
+  getAllUsers,
+  getUserById,
+  updateUserById,
+} from "../controllers/admin-controller.js";
+import { authMiddleware } from "../middlewares/auth-middleware.js";
+import { adminMiddleware } from "../middlewares/admin-middleware.js";
 
 const router = express.Router();
 
-router
-  .route("/users")
-  .get(authMiddleware, adminMiddleware, adminController.getAllUsers);
+router.route("/users").get(authMiddleware, adminMiddleware, getAllUsers);
 
-router
-  .route("/users/:id")
-  .get(authMiddleware, adminMiddleware, adminController.getUserById);
+router.route("/users/:id").get(authMiddleware, adminMiddleware, getUserById);
 
 router
   .route("/users/update/:id")
-  .patch(authMiddleware, adminMiddleware, adminController.updateUserById);
+  .patch(authMiddleware, adminMiddleware, updateUserById);
 
 router
   .route("/users/delete/:id")
-  .delete(authMiddleware, adminMiddleware, adminController.deleteUserById);
+  .delete(authMiddleware, adminMiddleware, deleteUserById);
 
-router
-  .route("/contacts")
-  .get(authMiddleware, adminMiddleware, adminController.getAllContacts);
+router.route("/contacts").get(authMiddleware, adminMiddleware, getAllContacts);
 
 router
   .route("/contacts/delete/:id")
-  .delete(authMiddleware, adminMiddleware, adminController.deleteContactById);
+  .delete(authMiddleware, adminMiddleware, deleteContactById);
 
-module.exports = router;
+export default router ;

@@ -1,7 +1,5 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-// const URI = "mongodb://127.0.0.1:27017/mern_admin";
-// mongoose.connect(URI);
 const URI = process.env.MONGODB_URI;
 
 const connectDb = async () => {
@@ -14,4 +12,4 @@ const connectDb = async () => {
   }
 };
 
-module.exports = connectDb;
+export { connectDb };

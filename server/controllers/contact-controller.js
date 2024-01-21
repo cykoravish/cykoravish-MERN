@@ -1,4 +1,4 @@
-const Contact = require("../models/contact-model");
+import { Contact } from "../models/contact-model.js";
 
 const contactForm = async (req, res) => {
   try {
@@ -11,4 +11,4 @@ const contactForm = async (req, res) => {
   }
 };
 
-module.exports = contactForm;
+export { contactForm };

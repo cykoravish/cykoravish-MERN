@@ -1,25 +1,22 @@
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import cors from "cors";
 const app = express();
-const authRoute = require("./router/auth-router");
 
-const contactRoute = require("./router/contact-router");
-const serviceRoute = require("./router/service-router");
-const adminRoute = require("./router/admin-router");
-const connectDb = require("./utils/db");
-const errorMiddleware = require("./middlewares/error-middleware");
+import authRoute from "./router/auth-router.js";
+import contactRoute from "./router/contact-router.js";
+import serviceRoute from "./router/service-router.js";
+import adminRoute from "./router/admin-router.js";
+import { connectDb } from "./utils/db.js";
+import { errorMiddleware } from "./middlewares/error-middleware.js";
 
 // let's tackle cors
 const corsOptions = {
-  // origin: "http://localhost:5173",
   origin: (origin, callback) => {
     // Check if the origin is allowed
     const allowedOrigins = [
       "http://localhost:5173",
-      "http://localhost:4173",
-      "https://thapatechnical.site",
-      "https://www.thapatechnical.site",
     ];
     const isAllowed = allowedOrigins.includes(origin);
     callback(null, isAllowed ? origin : false);

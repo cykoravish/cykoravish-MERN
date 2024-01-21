@@ -1,4 +1,4 @@
-const { z } = require("zod");
+import z from "zod";
 
 const loginSchema = z.object({
   email: z
@@ -28,4 +28,4 @@ const signupSchema = loginSchema.extend({
     .max(20, { message: "Phone must not be more than 20 characters" }),
 });
 
-module.exports = { signupSchema, loginSchema };
+export { signupSchema, loginSchema };

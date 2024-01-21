@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
 const contactSchema = new Schema({
   username: { type: String, required: true },
@@ -7,5 +7,4 @@ const contactSchema = new Schema({
 });
 
 // create a model or a collection
-const Contact = new model("Contact", contactSchema);
-module.exports = Contact;
+export const Contact = model("Contact", contactSchema);

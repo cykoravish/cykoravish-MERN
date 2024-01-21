@@ -1,4 +1,4 @@
-const Service = require("../models/service-model");
+import { Service } from "../models/service-model.js";
 
 const services = async (req, res) => {
   try {
@@ -14,4 +14,4 @@ const services = async (req, res) => {
   }
 };
 
-module.exports = services;
+export { services };
