@@ -11,7 +11,6 @@ export const AdminUpdate = () => {
   });
 
   const params = useParams();
-  console.log("params single user: ", params);
   const { authorizationToken, API } = useAuth();
 
   //   get single user data
@@ -24,7 +23,6 @@ export const AdminUpdate = () => {
         },
       });
       const data = await response.json();
-      console.log(`users single data:  ${data}`);
       setData(data);
 
       //   if (response.ok) {

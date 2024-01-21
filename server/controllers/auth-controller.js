@@ -18,7 +18,6 @@ const home = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, phone, password } = req.body;
 
     const userExist = await User.findOne({ email });
@@ -59,8 +58,6 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     const userExist = await User.findOne({ email });
-    console.log(userExist);
-
     if (!userExist) {
       return res.status(400).json({ message: "Invalid Credentials " });
     }
@@ -87,7 +84,6 @@ const login = async (req, res) => {
 const user = async (req, res) => {
   try {
     const userData = req.user;
-    console.log(userData);
     return res.status(200).json({ userData });
   } catch (error) {
     console.log(`error from the user route ${error}`);

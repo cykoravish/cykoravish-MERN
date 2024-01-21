@@ -35,8 +35,6 @@ export const Login = () => {
         body: JSON.stringify(user),
       });
 
-      console.log("login form", response);
-
       const res_data = await response.json();
 
       if (response.ok) {
@@ -50,7 +48,6 @@ export const Login = () => {
         toast.error(
           res_data.extraDetails ? res_data.extraDetails : res_data.message
         );
-        console.log("invalid credential");
       }
     } catch (error) {
       console.log(error);

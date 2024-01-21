@@ -51,7 +51,6 @@ export const Contact = () => {
       if (response.ok) {
         setContact(defaultContactFormData);
         const data = await response.json();
-        console.log(data);
         alert("Message send successfully");
       }
     } catch (error) {

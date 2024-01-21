@@ -16,7 +16,6 @@ export const AdminUsers = () => {
         },
       });
       const data = await response.json();
-      console.log(`users ${data}`);
       setUsers(data);
     } catch (error) {
       console.log(error);
@@ -33,8 +32,6 @@ export const AdminUsers = () => {
         },
       });
       const data = await response.json();
-      console.log(`users after delete:  ${data}`);
-
       if (response.ok) {
         getAllUsersData();
       }

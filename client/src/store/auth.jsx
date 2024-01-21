@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   let isLoggedIn = !!token;
-  console.log("isLoggedIN ", isLoggedIn);
 
   // tackling the logout functionality
   const LogoutUser = () => {
@@ -42,7 +41,6 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("user data ", data.userData);
         setUser(data.userData);
         setIsLoading(false);
       } else {
@@ -63,7 +61,6 @@ export const AuthProvider = ({ children }) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data.msg);
         setServices(data.msg);
       }
     } catch (error) {

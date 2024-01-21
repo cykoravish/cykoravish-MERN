@@ -18,7 +18,6 @@ export const Register = () => {
 
   // handling the input values
   const handleInput = (e) => {
-    console.log(e);
     let name = e.target.name;
     let value = e.target.value;
 
@@ -31,7 +30,6 @@ export const Register = () => {
   // handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
     try {
       const response = await fetch(URL, {
         method: "POST",
@@ -42,8 +40,6 @@ export const Register = () => {
       });
 
       const res_data = await response.json();
-      console.log("res from server", res_data.extraDetails);
-
       if (response.ok) {
         // stored the token in localhost
         storeTokenInLS(res_data.token);
