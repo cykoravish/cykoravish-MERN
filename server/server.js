@@ -15,9 +15,7 @@ import { errorMiddleware } from "./middlewares/error-middleware.js";
 const corsOptions = {
   origin: (origin, callback) => {
     // Check if the origin is allowed
-    const allowedOrigins = [
-      "http://localhost:5173",
-    ];
+    const allowedOrigins = ["http://localhost:5173"];
     const isAllowed = allowedOrigins.includes(origin);
     callback(null, isAllowed ? origin : false);
   },
@@ -39,7 +37,7 @@ app.use("/api/admin", adminRoute);
 
 app.use(errorMiddleware);
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 connectDb().then(() => {
   app.listen(PORT, () => {
     console.log(`server is running at port: ${PORT}`);
