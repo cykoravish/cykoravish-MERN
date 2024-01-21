@@ -15,29 +15,36 @@ export const About = () => {
                 Welcome,
                 {user ? ` ${user.username} to our website` : ` to our website`}
               </p>
-              <h1>Why Choose Us? </h1>
+              <h1>Unleashing Innovation with JavaScript Mastery</h1>
               <p>
-                Expertise: Our team consists of experienced IT professionals who
-                are passionate about staying up-to-date with the latest industry
-                trends.
+                JavaScript Pioneers: Unleashing creativity, we lead with
+                JavaScript mastery. Transforming concepts into dynamic web
+                experiences, our team pioneers innovation in both client and
+                server development.
               </p>
               <p>
-                Customization: We understand that every business is unique.
-                Thats why we create solutions that are tailored to your specific
-                needs and goals.
+                Dual-Side Dynamo: JavaScript powers our projects on both client
+                and server fronts. Its versatility, seen in asynchronous
+                operations and real-time updates, defines the dynamic
+                experiences we craft.
               </p>
               <p>
-                Customer-Centric Approach: We prioritize your satisfaction and
-                provide top-notch support to address your IT concerns.
+                Agile & Adaptable: With JavaScript's intuitive syntax and broad
+                developer appeal, our agile approach ensures projects are not
+                just current but adaptable to the ever-evolving landscape of web
+                development.
               </p>
               <p>
-                Affordability: We offer competitive pricing without compromising
-                on the quality of our services.
+                Ecosystem Enriched: In the vast JavaScript ecosystem, we
+                navigate frameworks like React, Angular, and Vue.js. This rich
+                environment propels the development of scalable, feature-rich
+                applications for diverse needs.
               </p>
               <p>
-                Reliability: Count on us to be there when you need us. We are
-                committed to ensuring your IT environment is reliable and
-                available 24/7.
+                Future-Forward Development: Positioned at the forefront, we
+                embrace JavaScript's dynamic nature. Our commitment to
+                innovation ensures projects remain future-proof, continuously
+                evolving with the latest in web development trends.
               </p>
               <div className="btn btn-group">
                 <NavLink to="/contact">

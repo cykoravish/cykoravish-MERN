@@ -7,13 +7,12 @@ export const Home = () => {
         <section className="section-hero">
           <div className="container grid grid-two-cols">
             <div className="hero-content">
-              <p>We are the World Best IT Company</p>
-              <h1>Welcome to Thapa Technical</h1>
+              <p>I am a Hungry Learner</p>
+              <h1>Welcome to cyko's world</h1>
               <p>
-                Are you ready to take your business to the next level with
-                cutting-edge IT solutions? Look no further! At Thapa Technical,
-                we specialize in providing innovative IT services and solutions
-                tailored to meet your unique needs.
+                MERN stack: MongoDB for data, Express.js for server, React for
+                UI, and Node.js for backend. It's a powerful, unified JavaScript
+                stack for building modern web apps.
               </p>
               <div className="btn btn-group">
                 <a href="/contact">
@@ -55,13 +54,14 @@ export const Home = () => {
           </div>
 
           <div className="hero-content">
-            <p>We are here to help you</p>
+            <p>I'm here to help you</p>
             <h1>Get Started Today</h1>
             <p>
-              Ready to take the first step towards a more efficient and secure
-              IT infrastructure? Contact us today for a free consultation and
-              lets discuss how Thapa Technical can help your business thrive in
-              the digital age.
+              "Welcome to cyko's world. It's a dynamic MERN app for seamless
+              user experiences. Integrated with MongoDB, Express.js, React, and
+              Node.js, it offers robust functionality and an intuitive
+              interface. Your gateway to a modern and enjoyable online
+              experience."
             </p>
             <div className="btn btn-group">
               <a href="/contact">

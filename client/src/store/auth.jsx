@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
-// eslint-disable-next-line react/prop-types
+
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState("");
@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const authorizationToken = `Bearer ${token}`;
 
   // const API = "http://localhost:5000";
-  // const API = "https://api.thapatechnical.site";
+  
   const API = import.meta.env.VITE_APP_URI_API;
 
   const storeTokenInLS = (serverToken) => {
